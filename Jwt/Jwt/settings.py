@@ -9,15 +9,14 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
-from pathlib import Path
-
 import pymysql
-
+from pathlib import Path
 import os
 
 pymysql.version_info = (2,2,0,'final',0)
 pymysql.install_as_MySQLdb()
+
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -88,7 +87,16 @@ WSGI_APPLICATION = 'Jwt.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME':  'jwt',
+        'USER': 'root',
+        'PASSWORD':'vasu@1234',
+        'HOST':'localhost',
+        'PORT':'3306',
+        'OPTIONS': {
+            'charset': 'utf8mb4',  # Use utf8mb4 for better Unicode support
+        },
+       
+
     }
 }
 
@@ -155,3 +163,5 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = "users.user"
