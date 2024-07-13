@@ -13,7 +13,7 @@ import pymysql
 from pathlib import Path
 import os
 
-pymysql.version_info = (2,2,0,'final',0)
+pymysql.version_info = (1,4,0,'final',0)
 pymysql.install_as_MySQLdb()
 
 
@@ -86,20 +86,14 @@ WSGI_APPLICATION = 'Jwt.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME':  'jwt',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'jwt',
         'USER': 'root',
-        'PASSWORD':'vasu@1234',
-        'HOST':'localhost',
-        'PORT':'3306',
-        'OPTIONS': {
-            'charset': 'utf8mb4',  # Use utf8mb4 for better Unicode support
-        },
-       
-
+        'PASSWORD': 'vasu@1234',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -164,4 +158,4 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = "users.user"
+AUTH_USER_MODEL = "auth.user"

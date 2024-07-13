@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from  .serializers import UserSerializer
 # Create your views here.
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -15,3 +15,13 @@ class Home(APIView):
     def get(self, request):
         content = {'message': 'Hello, World!'}
         return Response(content)
+    
+
+class Reg(APIView):
+    def post(self, request):
+        serializer = UserSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+
+
