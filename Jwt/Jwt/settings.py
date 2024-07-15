@@ -46,8 +46,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
-   
+    'cust_auth',
 ]
+
 
 
 MIDDLEWARE = [
@@ -87,7 +88,7 @@ WSGI_APPLICATION = 'Jwt.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'jwt',
+        'NAME': 'JWT',
         'USER': 'root',
         'PASSWORD': 'vasu@1234',
         'HOST': 'localhost',
@@ -158,4 +159,6 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = "auth.user"
+
+
+AUTH_USER_MODEL = 'cust_auth.MyUser'
