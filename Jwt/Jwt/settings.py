@@ -12,16 +12,13 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import pymysql
 from pathlib import Path
 import os
+from datetime import timedelta
 
-pymysql.version_info = (1,4,0,'final',0)
+pymysql.version_info = (1, 4, 0, 'final', 0)
 pymysql.install_as_MySQLdb()
-
-
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -34,7 +31,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -46,10 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
-    'cust_auth',
+    'Myapp',
+    
 ]
-
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -81,14 +76,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Jwt.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'JWT',
+        'NAME': 'Jwt_auth',
         'USER': 'root',
         'PASSWORD': 'vasu@1234',
         'HOST': 'localhost',
@@ -114,10 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# settings.py
-from datetime import timedelta # import this library top of the settings.py file
-
-# put on your settings.py file below INSTALLED_APPS
+# REST framework and JWT settings
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
@@ -129,10 +120,7 @@ REST_FRAMEWORK = {
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
-    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
-    'SLIDING_TOKEN_LIFETIME': timedelta(days=30),
-    'SLIDING_TOKEN_REFRESH_LIFETIME_LATE_USER': timedelta(days=1),
-    'SLIDING_TOKEN_LIFETIME_LATE_USER': timedelta(days=30),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
 
 # Internationalization
@@ -148,7 +136,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
@@ -159,6 +146,4 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-
-AUTH_USER_MODEL = 'cust_auth.MyUser'
+# Custom user model
